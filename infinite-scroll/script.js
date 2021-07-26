@@ -17,8 +17,12 @@ getPhotos();
 // Get photos from Unsplash API
 async function getPhotos() {
     try {
-        const response = await fetch(url);
-        photosArray = await response.json();
+        axios.get(url)
+            .then(r => {
+                photosArray = r.data.data
+                console.log(r.data.data)
+            })
+            .catch(err => console.log(err));
         displayPhotos();
     } catch (e) {
         console.error(e);
